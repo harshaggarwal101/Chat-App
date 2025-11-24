@@ -5,6 +5,7 @@ import cors from "cors";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import connectDB from "./config/db.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config();
 connectDB();
@@ -25,6 +26,7 @@ import authRoutes from "./routes/authRoutes.js";
 import otpRoutes from "./routes/otpRoutes.js"
 app.use("/api/auth", authRoutes);
 app.use("/api/otp", otpRoutes);
+app.use("/api/users",userRoutes);
 
 // Socket.io Setup
 const io = new Server(httpServer, {
