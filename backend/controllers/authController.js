@@ -4,41 +4,52 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
 export const verifyOtpAndSignup = async (req, res) => {
-    console.log("Signup API called");   // DEBUG 1
-
+    console.log("Signup API called");
     const { name, email, password, otp } = req.body;
-    console.log("Request body:", req.body);  // DEBUG 2
 
     try {
-        console.log("Checking OTP...");  // DEBUG 3
-        const otpData = await Otp.findOne({ email, otp });
-        console.log("OTP Data:", otpData);   // DEBUG 4
+        console.log("Fetching OTP record...");
+        const otpRecord = await Otp.findOne({ email });
 
-        if (!otpData) {
-            console.log("Invalid OTP");  // DEBUG 5
-            return res.status(400).json({ success: false, message: "Invalid OTP" });
+        console.log("OTP SENT BY USER:", otp);
+        console.log("OTP STORED IN DB:", otpRecord?.otp);
+
+        if (!otpRecord) {
+            console.log("No OTP found");
+            return res.status(400).json({ success: false, message: "OTP expired or not found" });
         }
 
-        console.log("Hashing password...");  // DEBUG 6
+        if (otpRecord.otp !== otp) {
+            console.log("OTP mismatch");
+            return res.status(400).json({ success: false, message: "Invalid OTP" });
+        }
+        if (await User.findOne({ email })) {
+            return res.status(400).json({
+            success: false,
+            message: "Email already registered. Please login."
+            });
+        }
+        console.log("Hashing password...");
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        console.log("Creating user...");  // DEBUG 7
+        console.log("Creating user...");
         const newUser = await User.create({
             name,
             email,
             password: hashedPassword
         });
-        console.log("User created:", newUser);  // DEBUG 8
 
-        console.log("Deleting OTP...");  // DEBUG 9
+        console.log("User created:", newUser);
+
+        console.log("Deleting OTP...");
         await Otp.deleteMany({ email });
 
-        console.log("Sending success response");  // DEBUG 10
-        res.json({ success: true, message: "Signup successful" });
+        console.log("Sending response...");
+        return res.json({ success: true, message: "Signup successful" });
 
     } catch (error) {
-        console.log("ERROR CAUGHT:", error);  // DEBUG 11
-        res.status(500).json({ success: false, message: "Error verifying OTP" });
+        console.log("ERROR CAUGHT:", error);
+        return res.status(500).json({ success: false, message: "Error verifying OTP" });
     }
 };
 

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./stylesheets/style.css">
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+
+  <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow">
+
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">
+      Login to Chat App
+    </h1>
+
+    <!-- EMAIL -->
+    <label class="block mb-3">
+      <span class="text-gray-700">Email</span>
+      <input 
+        id="email"
+        type="email" 
+        class="mt-1 block w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your email">
+    </label>
+
+    <!-- PASSWORD -->
+    <label class="block mb-4">
+      <span class="text-gray-700">Password</span>
+      <input 
+        id="password"
+        type="password" 
+        class="mt-1 block w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter password">
+    </label>
+
+    <!-- LOGIN BUTTON -->
+    <button
+      id="loginBtn"
+      class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+      Login
+    </button>
+
+    <p class="text-center text-sm mt-4">
+      Don’t have an account? 
+      <a href="signup.html" class="text-blue-600 hover:underline">Signup</a>
+    </p>
+
+  </div>
+
+  <script src="./javascripts/login.js"></script>
+</body>
+</html>

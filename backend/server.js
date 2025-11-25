@@ -28,7 +28,12 @@ const httpServer = createServer(app);
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: "http://localhost:5500",
+    origin: [
+        "http://localhost",
+        "http://localhost:5500",
+        "http://127.0.0.1",
+        "http://127.0.0.1:5500"
+    ],
     credentials: true
 }));
 
@@ -42,7 +47,11 @@ app.use("/api/messages", messageRoutes);
 // Socket.io Setup
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:5500",
+        origin: [
+        "http://localhost",
+        "http://localhost:5500",
+        "http://127.0.0.1:5500"
+    ],
         credentials: true,
         methods: ["GET", "POST"]
     }

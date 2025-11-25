@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Signup</title>
+  <link rel="stylesheet" href="./stylesheets/style.css" />
+</head>
+
+<body class="min-h-screen flex items-center justify-center bg-gray-100">
+
+  <div class="w-full max-w-sm bg-white p-8 rounded-lg shadow">
+
+    <h1 class="text-2xl font-bold mb-6 text-gray-800 text-center">
+      Create Account
+    </h1>
+
+    <!-- EMAIL -->
+    <label class="block mb-3">
+      <span class="text-gray-700">Email</span>
+      <input id="email" type="email"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter your email" />
+    </label>
+
+    <!-- OTP (hidden initially) -->
+    <label class="block mb-3 hidden" id="otpContainer">
+      <span class="text-gray-700">OTP</span>
+      <input id="otp" type="text"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter OTP" />
+    </label>
+
+    <!-- NAME (hidden until OTP verified) -->
+    <label class="block mb-3 hidden" id="nameContainer">
+      <span class="text-gray-700">Full Name</span>
+      <input id="name" type="text"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+        placeholder="Harsh Aggarwal" />
+    </label>
+
+    <!-- PASSWORD (hidden until OTP verified) -->
+    <label class="block mb-4 hidden" id="passwordContainer">
+      <span class="text-gray-700">Password</span>
+      <input id="password" type="password"
+        class="mt-1 w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500"
+        placeholder="At least 6 characters" />
+    </label>
+
+    <!-- BUTTON -->
+    <button id="signupBtn"
+      class="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition">
+      Send OTP
+    </button>
+
+    <p class="text-center text-sm mt-4">
+      Already have an account?
+      <a href="login.html" class="text-blue-600 hover:underline">Login</a>
+    </p>
+
+  </div>
+
+  <script src="./javascripts/signup.js"></script>
+</body>
+</html>
