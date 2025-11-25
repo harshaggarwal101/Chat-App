@@ -15,4 +15,12 @@ router.get("/me",authMiddleware,(req,res)=>{
     });
 });
 
+router.post("/logout", (req, res) => {
+    res.clearCookie("token", {
+        httpOnly: true,
+        sameSite: "lax",
+    });
+    res.json({ success: true, message: "Logged out" });
+});
+
 export default router;

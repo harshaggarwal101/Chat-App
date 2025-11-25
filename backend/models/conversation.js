@@ -10,7 +10,7 @@ const convSchema = new mongoose.Schema(
       ref: "Message"
     }
   },
-  { timestamps: true }
+  { timestamps: true}
 );
 
 export default mongoose.model("Conversation", convSchema);
