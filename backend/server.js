@@ -27,15 +27,15 @@ import authRoutes from "./routes/authRoutes.js";
 import otpRoutes from "./routes/otpRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import conversationRoutes from "./routes/conversationRoutes.js";
+import messageRoutes from "./routes/messageRoutes.js";
 
 app.use("/api/auth", authRoutes);
 app.use("/api/otp", otpRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/conversations", conversationRoutes);
+app.use("/api/conversations", messageRoutes);
 
-// ------------------------
-// SOCKET.IO SETUP
-// ------------------------
+//socket.io
 const io = new Server(httpServer, {
     cors: {
         origin: "http://localhost:5500",
